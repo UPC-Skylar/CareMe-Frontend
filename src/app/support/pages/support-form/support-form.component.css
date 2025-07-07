@@ -1,0 +1,443 @@
+.support-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.support-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.page-title {
+  font-family: 'Zilla Slab', serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: #3D44DD;
+  margin-bottom: 10px;
+}
+
+.page-subtitle {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  color: #405057;
+  margin: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Tabs */
+.support-tabs {
+  margin-bottom: 40px;
+}
+
+.support-tabs .mat-mdc-tab-label {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  color: #405057;
+}
+
+.support-tabs .mat-mdc-tab-label.mdc-tab--active {
+  color: #3D44DD;
+}
+
+.tab-content {
+  padding: 30px 0;
+}
+
+/* Loading */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+/* Contact Info Section */
+.contact-info-section {
+  margin-bottom: 40px;
+}
+
+.contact-info-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.contact-methods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.contact-method {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  text-align: left;
+}
+
+.contact-icon {
+  width: 48px;
+  height: 48px;
+  font-size: 48px;
+  color: #3D44DD;
+  background-color: rgba(61, 68, 221, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contact-details h4 {
+  font-family: 'Zilla Slab', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.contact-details p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #3D44DD;
+  margin: 0 0 4px 0;
+}
+
+.contact-details span {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #405057;
+}
+
+/* Form Section */
+.form-section {
+  margin-bottom: 40px;
+}
+
+.form-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-card .mat-mdc-card-title {
+  font-family: 'Zilla Slab', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-card .mat-mdc-card-subtitle {
+  font-family: 'Open Sans', sans-serif;
+  color: #405057;
+}
+
+.support-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 20px;
+}
+
+.form-field {
+  width: 100%;
+}
+
+.message-field {
+  min-height: 120px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.submit-btn {
+  background-color: #3D44DD;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  border-radius: 8px;
+  min-width: 150px;
+  position: relative;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background-color: #2A33B8;
+}
+
+.btn-spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* FAQ Section */
+.faq-section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.faq-category {
+  margin-bottom: 20px;
+}
+
+.category-title {
+  font-family: 'Zilla Slab', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.faq-accordion {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.faq-panel {
+  margin-bottom: 0;
+}
+
+.faq-panel .mat-expansion-panel-header {
+  padding: 16px 20px;
+  background-color: #f8f9fa;
+}
+
+.faq-panel .mat-expansion-panel-header:hover {
+  background-color: #e9ecef;
+}
+
+.faq-question {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.faq-answer {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #405057;
+  line-height: 1.6;
+  margin: 0;
+  padding: 16px 20px;
+}
+
+/* Tickets Section */
+.tickets-section {
+  margin-bottom: 40px;
+}
+
+.tickets-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ticket-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #3D44DD;
+}
+
+.ticket-card .mat-mdc-card-header {
+  position: relative;
+}
+
+.ticket-subject {
+  font-family: 'Zilla Slab', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.ticket-date {
+  font-family: 'Open Sans', sans-serif;
+  color: #405057;
+}
+
+.ticket-status {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.ticket-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ticket-message,
+.ticket-response {
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.ticket-message {
+  background-color: #f8f9fa;
+  border-left: 3px solid #3D44DD;
+}
+
+.ticket-response {
+  background-color: rgba(76, 175, 80, 0.1);
+  border-left: 3px solid #4caf50;
+}
+
+.ticket-message h4,
+.ticket-response h4 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.ticket-message p,
+.ticket-response p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #405057;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.response-date {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+  margin-top: 8px;
+  display: block;
+}
+
+/* Empty States */
+.empty-tickets {
+  display: flex;
+  justify-content: center;
+}
+
+.empty-tickets-card {
+  max-width: 400px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.empty-tickets-content {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.empty-tickets-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  color: #ccc;
+  margin-bottom: 16px;
+  opacity: 0.7;
+}
+
+.empty-tickets-content h2 {
+  font-family: 'Zilla Slab', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.empty-tickets-content p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #405057;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Status Chips */
+.mat-mdc-chip {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .support-container {
+    padding: 0 15px;
+  }
+
+  .page-title {
+    font-size: 24px;
+  }
+
+  .contact-methods {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .contact-method {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .form-actions {
+    justify-content: center;
+  }
+
+  .submit-btn {
+    width: 100%;
+  }
+
+  .ticket-status {
+    position: static;
+    margin-top: 12px;
+  }
+
+  .ticket-card .mat-mdc-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .tab-content {
+    padding: 20px 0;
+  }
+
+  .contact-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+  }
+
+  .support-form {
+    gap: 16px;
+  }
+
+  .ticket-content {
+    gap: 16px;
+  }
+
+  .ticket-message,
+  .ticket-response {
+    padding: 12px;
+  }
+
+  .empty-tickets-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .empty-tickets-content {
+    padding: 30px 15px;
+  }
+}

@@ -1,0 +1,165 @@
+<div class="subscription-container">
+  <!-- Header -->
+  <div class="subscription-header">
+    <h1 class="page-title">{{ 'subscription.title' | translate }}</h1>
+    <p class="page-subtitle">Elige el plan que mejor se adapte a tus necesidades</p>
+  </div>
+
+  <!-- Current Subscription Info -->
+  <div *ngIf="currentSubscription" class="current-plan-info">
+    <mat-card class="current-plan-card">
+      <mat-card-content>
+        <div class="current-plan-content">
+          <div class="current-plan-icon">
+            <mat-icon>card_membership</mat-icon>
+          </div>
+          <div class="current-plan-details">
+            <h3>{{ 'subscription.currentPlan' | translate }}</h3>
+            <p class="current-plan-name">
+              {{ currentSubscription.planType === 'premium' ? 'Premium' : 'Pro Max' }}
+              - S/ {{ currentSubscription.price }}/mes
+            </p>
+            <p class="current-plan-dates">
+              Activo hasta: {{ currentSubscription.endDate | date:'longDate' }}
+            </p>
+          </div>
+          <button
+            mat-stroked-button
+            color="warn"
+            (click)="cancelSubscription()"
+            [disabled]="subscribing"
+            class="cancel-btn">
+            Cancelar Suscripción
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <!-- Plans Grid -->
+  <div *ngIf="!loading" class="plans-grid">
+    <mat-card
+      *ngFor="let plan of plans"
+      class="plan-card"
+      [class.recommended]="plan.recommended"
+      [class.current]="isCurrentPlan(plan)">
+
+      <!-- Recommended Badge -->
+      <div *ngIf="plan.recommended" class="recommended-badge">
+        <mat-chip color="accent">Recomendado</mat-chip>
+      </div>
+
+      <!-- Current Plan Badge -->
+      <div *ngIf="isCurrentPlan(plan)" class="current-badge">
+        <mat-chip color="primary">Plan Actual</mat-chip>
+      </div>
+
+      <mat-card-header class="plan-header">
+        <mat-card-title class="plan-name">{{ plan.name }}</mat-card-title>
+        <mat-card-subtitle class="plan-price">
+          <span class="currency">S/</span>
+          <span class="amount">{{ plan.price }}</span>
+          <span class="period">/mes</span>
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content class="plan-content">
+        <ul class="features-list">
+          <li
+            *ngFor="let feature of plan.features"
+            class="feature-item">
+            <mat-icon class="feature-icon">check_circle</mat-icon>
+            <span class="feature-text">{{ feature }}</span>
+          </li>
+        </ul>
+      </mat-card-content>
+
+      <mat-card-actions class="plan-actions">
+        <button
+          mat-raised-button
+          [color]="plan.recommended ? 'accent' : 'primary'"
+          [disabled]="isButtonDisabled(plan)"
+          (click)="subscribeToPlan(plan)"
+          class="subscribe-btn">
+
+          <mat-spinner
+            *ngIf="subscribing"
+            diameter="20"
+            class="btn-spinner">
+          </mat-spinner>
+
+          <span *ngIf="!subscribing">{{ getButtonText(plan) }}</span>
+          <span *ngIf="subscribing">Procesando...</span>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <!-- Benefits Section -->
+  <div class="benefits-section">
+    <mat-card class="benefits-card">
+      <mat-card-content>
+        <h2 class="benefits-title">¿Por qué suscribirse a CareMe?</h2>
+
+        <div class="benefits-grid">
+          <div class="benefit-item">
+            <mat-icon class="benefit-icon">security</mat-icon>
+            <h4>Seguridad Garantizada</h4>
+            <p>Todos nuestros cuidadores están verificados y cuentan con certificaciones profesionales</p>
+          </div>
+
+          <div class="benefit-item">
+            <mat-icon class="benefit-icon">support_agent</mat-icon>
+            <h4>Soporte 24/7</h4>
+            <p>Asistencia completa las 24 horas para resolver cualquier consulta o emergencia</p>
+          </div>
+
+          <div class="benefit-item">
+            <mat-icon class="benefit-icon">location_on</mat-icon>
+            <h4>Seguimiento en Tiempo Real</h4>
+            <p>Monitorea la ubicación y actividades de tu cuidador en tiempo real</p>
+          </div>
+
+          <div class="benefit-item">
+            <mat-icon class="benefit-icon">family_restroom</mat-icon>
+            <h4>Tranquilidad Familiar</h4>
+            <p>Mantén a toda la familia informada sobre el cuidado de sus seres queridos</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="faq-section">
+    <h2 class="faq-title">Preguntas Frecuentes</h2>
+
+    <div class="faq-list">
+      <mat-card class="faq-item">
+        <mat-card-content>
+          <h4>¿Puedo cancelar mi suscripción en cualquier momento?</h4>
+          <p>Sí, puedes cancelar tu suscripción en cualquier momento sin penalizaciones. Tu plan seguirá activo hasta el final del período de facturación.</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="faq-item">
+        <mat-card-content>
+          <h4>¿Qué incluye el botón de emergencia?</h4>
+          <p>El botón de emergencia conecta directamente con servicios de emergencia y notifica a tus contactos de confianza, compartiendo la ubicación en tiempo real.</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="faq-item">
+        <mat-card-content>
+          <h4>¿Los cuidadores están asegurados?</h4>
+          <p>Sí, todos nuestros cuidadores cuentan con seguros de responsabilidad civil y están cubiertos durante la prestación del servicio.</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

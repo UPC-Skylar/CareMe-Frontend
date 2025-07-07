@@ -1,0 +1,408 @@
+/* src/app/subscription/pages/subscription-plans/subscription-plans.component.css */
+.subscription-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.subscription-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.page-title {
+  font-family: 'Zilla Slab', serif;
+  font-size: 36px;
+  font-weight: 600;
+  color: #3D44DD;
+  margin-bottom: 10px;
+}
+
+.page-subtitle {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  color: #405057;
+  margin: 0;
+}
+
+/* Current Plan Info */
+.current-plan-info {
+  margin-bottom: 40px;
+}
+
+.current-plan-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #3D44DD;
+}
+
+.current-plan-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.current-plan-icon {
+  width: 60px;
+  height: 60px;
+  background-color: #3D44DD;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.current-plan-icon mat-icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+}
+
+.current-plan-details {
+  flex: 1;
+}
+
+.current-plan-details h3 {
+  font-family: 'Zilla Slab', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.current-plan-name {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #3D44DD;
+  margin: 0 0 4px 0;
+}
+
+.current-plan-dates {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #405057;
+  margin: 0;
+}
+
+.cancel-btn {
+  color: #f44336;
+  border-color: #f44336;
+}
+
+.cancel-btn:hover {
+  background-color: rgba(244, 67, 54, 0.1);
+}
+
+/* Loading */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+/* Plans Grid */
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.plan-card {
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: visible;
+}
+
+.plan-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.plan-card.recommended {
+  border: 2px solid #3D44DD;
+  transform: scale(1.05);
+}
+
+.plan-card.recommended:hover {
+  transform: scale(1.05) translateY(-8px);
+}
+
+.plan-card.current {
+  border: 2px solid #4caf50;
+  background-color: rgba(76, 175, 80, 0.02);
+}
+
+/* Badges */
+.recommended-badge,
+.current-badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.recommended-badge .mat-mdc-chip,
+.current-badge .mat-mdc-chip {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+/* Plan Header */
+.plan-header {
+  text-align: center;
+  padding: 30px 20px 20px;
+}
+
+.plan-name {
+  font-family: 'Zilla Slab', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.plan-price {
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+}
+
+.currency {
+  font-size: 18px;
+  color: #405057;
+}
+
+.amount {
+  font-size: 36px;
+  font-weight: 700;
+  color: #3D44DD;
+}
+
+.period {
+  font-size: 16px;
+  color: #405057;
+}
+
+/* Plan Content */
+.plan-content {
+  padding: 0 20px 20px;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.feature-icon {
+  color: #4caf50;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.feature-text {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* Plan Actions */
+.plan-actions {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.subscribe-btn {
+  width: 100%;
+  height: 48px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.btn-spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Benefits Section */
+.benefits-section {
+  margin-bottom: 60px;
+}
+
+.benefits-card {
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.benefits-title {
+  font-family: 'Zilla Slab', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.benefit-item {
+  text-align: center;
+  padding: 20px;
+}
+
+.benefit-icon {
+  width: 48px;
+  height: 48px;
+  font-size: 48px;
+  color: #3D44DD;
+  margin-bottom: 16px;
+}
+
+.benefit-item h4 {
+  font-family: 'Zilla Slab', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.benefit-item p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #405057;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* FAQ Section */
+.faq-section {
+  margin-bottom: 40px;
+}
+
+.faq-title {
+  font-family: 'Zilla Slab', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-item {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.faq-item h4 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.faq-item p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #405057;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .subscription-container {
+    padding: 0 15px;
+  }
+
+  .page-title {
+    font-size: 28px;
+  }
+
+  .plans-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .plan-card.recommended {
+    transform: none;
+  }
+
+  .plan-card.recommended:hover {
+    transform: translateY(-4px);
+  }
+
+  .current-plan-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 24px;
+  }
+
+  .plan-name {
+    font-size: 24px;
+  }
+
+  .amount {
+    font-size: 28px;
+  }
+
+  .plan-header {
+    padding: 20px 15px 15px;
+  }
+
+  .plan-content {
+    padding: 0 15px 15px;
+  }
+
+  .plan-actions {
+    padding: 15px;
+  }
+}

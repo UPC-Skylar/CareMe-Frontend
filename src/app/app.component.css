@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: white;
+  color: #333;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  flex: 1;
+  display: flex;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  background-color: #f8f9fa;
+  margin-left: 250px;
+  margin-top: 64px;
+  min-height: calc(100vh - 64px);
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    padding: 15px;
+  }
+}

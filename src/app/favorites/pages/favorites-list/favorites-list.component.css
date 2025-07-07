@@ -1,0 +1,333 @@
+/* src/app/favorites/pages/favorites-list/favorites-list.component.css */
+.favorites-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.favorites-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.page-title {
+  font-family: 'Zilla Slab', serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: #3D44DD;
+  margin-bottom: 10px;
+}
+
+.page-subtitle {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  color: #405057;
+  margin: 0;
+}
+
+/* Loading */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+/* Favorites Grid */
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.favorite-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  border-left: 4px solid #e91e63;
+}
+
+.favorite-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Header */
+.favorite-card .mat-mdc-card-header {
+  position: relative;
+  padding: 20px 20px 16px;
+}
+
+.caregiver-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 16px;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.caregiver-name {
+  font-family: 'Zilla Slab', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.caregiver-title {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #405057;
+}
+
+.remove-favorite-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: #e91e63;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.remove-favorite-btn:hover {
+  color: #c2185b;
+  transform: scale(1.1);
+}
+
+/* Card Content */
+.caregiver-content {
+  padding: 0 20px 16px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+}
+
+.info-icon {
+  color: #3D44DD;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #405057;
+  min-width: 80px;
+}
+
+.info-value {
+  color: #333;
+  flex: 1;
+}
+
+.rating-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  color: #FFD700;
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+.rating-number {
+  font-size: 12px;
+  color: #666;
+}
+
+.verification-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: rgba(76, 175, 80, 0.1);
+  color: #4caf50;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 8px;
+  width: fit-content;
+}
+
+.verification-badge mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+/* Card Actions */
+.caregiver-actions {
+  padding: 16px 20px 20px;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.view-profile-btn {
+  background-color: #3D44DD;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  border-radius: 8px;
+  flex: 1;
+}
+
+.view-profile-btn:hover {
+  background-color: #2A33B8;
+}
+
+.contact-btn {
+  color: #3D44DD;
+  border-color: #3D44DD;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  border-radius: 8px;
+  flex: 1;
+}
+
+.contact-btn:hover {
+  background-color: rgba(61, 68, 221, 0.1);
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.empty-state-card {
+  max-width: 500px;
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.empty-state-content {
+  text-align: center;
+  padding: 60px 40px;
+}
+
+.empty-state-icon {
+  font-size: 80px;
+  width: 80px;
+  height: 80px;
+  color: #e91e63;
+  margin-bottom: 24px;
+  opacity: 0.7;
+}
+
+.empty-state-content h2 {
+  font-family: 'Zilla Slab', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.empty-state-content p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  color: #405057;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.browse-btn {
+  background-color: #3D44DD;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 8px;
+  padding: 12px 32px;
+}
+
+.browse-btn:hover {
+  background-color: #2A33B8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .favorites-container {
+    padding: 0 15px;
+  }
+
+  .page-title {
+    font-size: 24px;
+  }
+
+  .favorites-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .caregiver-actions {
+    flex-direction: column;
+  }
+
+  .empty-state-content {
+    padding: 40px 20px;
+  }
+
+  .empty-state-content h2 {
+    font-size: 20px;
+  }
+
+  .empty-state-icon {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+  }
+}
+
+@media (max-width: 480px) {
+  .favorite-card .mat-mdc-card-header {
+    padding: 16px;
+  }
+
+  .caregiver-content {
+    padding: 0 16px 12px;
+  }
+
+  .caregiver-actions {
+    padding: 12px 16px 16px;
+  }
+
+  .info-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .info-label {
+    min-width: unset;
+  }
+
+  .rating-container {
+    margin-left: 0;
+  }
+}

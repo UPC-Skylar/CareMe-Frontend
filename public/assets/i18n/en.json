@@ -1,0 +1,100 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "caregivers": "Caregivers",
+    "profile": "My Profile",
+    "history": "History",
+    "favorites": "Favorites",
+    "support": "Support",
+    "subscription": "Subscription",
+    "logout": "Logout"
+  },
+  "dashboard": {
+    "welcome": "Welcome to CareMe",
+    "subtitle": "Find the best professional caregivers for your loved ones",
+    "totalCaregivers": "Total Caregivers",
+    "favoriteCaregivers": "Favorite Caregivers",
+    "activeContracts": "Active Contracts",
+    "recentActivity": "Recent Activity"
+  },
+  "caregivers": {
+    "title": "Professional Caregivers",
+    "searchPlaceholder": "Search caregivers...",
+    "specialty": "Specialty",
+    "experience": "Experience",
+    "location": "Location",
+    "addToFavorites": "Add to Favorites",
+    "removeFromFavorites": "Remove from Favorites",
+    "viewProfile": "View Profile",
+    "contactCaregiver": "Contact",
+    "years": "years of experience"
+  },
+  "profile": {
+    "title": "My Profile",
+    "personalInfo": "Personal Information",
+    "firstName": "First Name",
+    "email": "Email",
+    "phone": "Phone",
+    "role": "Role",
+    "edit": "Edit",
+    "save": "Save",
+    "cancel": "Cancel",
+    "updateSuccess": "Profile updated successfully"
+  },
+  "subscription": {
+    "title": "Subscription Plans",
+    "currentPlan": "Current Plan",
+    "premium": "Premium",
+    "proMax": "Pro Max",
+    "premiumPrice": "S/ 20/month",
+    "proMaxPrice": "S/ 35/month",
+    "premiumFeatures": [
+      "Access to verified caregivers",
+      "Basic support",
+      "Location tracking",
+      "Basic emergency button"
+    ],
+    "proMaxFeatures": [
+      "Access to all premium caregivers",
+      "24/7 priority support",
+      "Advanced location tracking",
+      "Emergency button with instant response",
+      "Family notifications",
+      "Detailed reports"
+    ],
+    "subscribe": "Subscribe",
+    "manage": "Manage Subscription"
+  },
+  "favorites": {
+    "title": "Favorite Caregivers",
+    "empty": "You haven't added any caregivers to favorites yet",
+    "browseCaregiver": "Browse Caregivers"
+  },
+  "history": {
+    "title": "Contract History",
+    "date": "Date",
+    "caregiver": "Caregiver",
+    "duration": "Duration",
+    "status": "Status",
+    "amount": "Amount",
+    "empty": "No contracts found"
+  },
+  "support": {
+    "title": "Contact Support",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send Message",
+    "success": "Message sent successfully"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "noResults": "No results found"
+  }
+}

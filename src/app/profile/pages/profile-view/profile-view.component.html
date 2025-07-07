@@ -1,0 +1,193 @@
+<div class="profile-container">
+  <!-- Header -->
+  <div class="profile-header">
+    <h1 class="page-title">{{ 'profile.title' | translate }}</h1>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <!-- Profile Content -->
+  <div *ngIf="!loading && user" class="profile-content">
+
+    <!-- Profile Avatar Section -->
+    <mat-card class="avatar-card">
+      <mat-card-content>
+        <div class="avatar-section">
+          <div class="avatar-container">
+            <div class="avatar-circle">
+              <mat-icon class="avatar-icon">person</mat-icon>
+            </div>
+            <button
+              mat-icon-button
+              class="avatar-edit-btn"
+              *ngIf="isEditing">
+              <mat-icon>camera_alt</mat-icon>
+            </button>
+          </div>
+
+          <div class="avatar-info">
+            <h2 class="user-name">{{ user.firstname }}</h2>
+            <p class="user-role">{{ user.role | titlecase }}</p>
+            <div class="user-status">
+              <mat-icon class="status-icon">verified</mat-icon>
+              <span>Cuenta Verificada</span>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Profile Form -->
+    <mat-card class="profile-form-card">
+      <mat-card-header>
+        <mat-card-title>{{ 'profile.personalInfo' | translate }}</mat-card-title>
+        <div class="header-actions">
+          <button
+            *ngIf="!isEditing"
+            mat-raised-button
+            color="primary"
+            (click)="toggleEdit()"
+            class="edit-btn">
+            <mat-icon>edit</mat-icon>
+            {{ 'profile.edit' | translate }}
+          </button>
+        </div>
+      </mat-card-header>
+
+      <mat-card-content>
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="profile-form">
+
+          <!-- First Name -->
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>{{ 'profile.firstName' | translate }}</mat-label>
+            <input
+              matInput
+              formControlName="firstname"
+              [readonly]="!isEditing"
+              placeholder="Ingrese su nombre">
+            <mat-error *ngIf="isFieldInvalid('firstname')">
+              {{ getFieldError('firstname') }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Email -->
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>{{ 'profile.email' | translate }}</mat-label>
+            <input
+              matInput
+              type="email"
+              formControlName="email"
+              [readonly]="!isEditing"
+              placeholder="Ingrese su email">
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="isFieldInvalid('email')">
+              {{ getFieldError('email') }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Phone -->
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>{{ 'profile.phone' | translate }}</mat-label>
+            <input
+              matInput
+              type="tel"
+              formControlName="phone"
+              [readonly]="!isEditing"
+              placeholder="+51XXXXXXXXX">
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-error *ngIf="isFieldInvalid('phone')">
+              {{ getFieldError('phone') }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Role (Read-only) -->
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>{{ 'profile.role' | translate }}</mat-label>
+            <input
+              matInput
+              formControlName="role"
+              readonly
+              placeholder="Rol del usuario">
+            <mat-icon matSuffix>badge</mat-icon>
+          </mat-form-field>
+
+          <!-- Action Buttons -->
+          <div *ngIf="isEditing" class="form-actions">
+            <button
+              type="button"
+              mat-stroked-button
+              (click)="toggleEdit()"
+              [disabled]="saving"
+              class="cancel-btn">
+              {{ 'profile.cancel' | translate }}
+            </button>
+
+            <button
+              type="submit"
+              mat-raised-button
+              color="primary"
+              [disabled]="profileForm.invalid || saving"
+              class="save-btn">
+
+              <mat-spinner
+                *ngIf="saving"
+                diameter="20"
+                class="btn-spinner">
+              </mat-spinner>
+
+              <span *ngIf="!saving">{{ 'profile.save' | translate }}</span>
+              <span *ngIf="saving">Guardando...</span>
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Additional Settings -->
+    <mat-card class="settings-card">
+      <mat-card-header>
+        <mat-card-title>Configuraciones Adicionales</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="settings-list">
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Cambiar Contraseña</h4>
+              <p>Actualiza tu contraseña por seguridad</p>
+            </div>
+            <button mat-stroked-button color="primary">
+              Cambiar
+            </button>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Notificaciones</h4>
+              <p>Gestiona tus preferencias de notificación</p>
+            </div>
+            <button mat-stroked-button color="primary">
+              Configurar
+            </button>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Privacidad</h4>
+              <p>Controla quién puede ver tu información</p>
+            </div>
+            <button mat-stroked-button color="primary">
+              Gestionar
+            </button>
+          </div>
+
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+</div>

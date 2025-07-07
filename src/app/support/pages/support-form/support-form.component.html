@@ -1,0 +1,301 @@
+<div class="support-container">
+  <!-- Header -->
+  <div class="support-header">
+    <h1 class="page-title">{{ 'support.title' | translate }}</h1>
+    <p class="page-subtitle">Estamos aquí para ayudarte. Envíanos tu consulta o revisa nuestras preguntas frecuentes.</p>
+  </div>
+
+  <!-- Tabs -->
+  <mat-tab-group class="support-tabs" animationDuration="300ms">
+
+    <!-- Contact Form Tab -->
+    <mat-tab label="Contactar Soporte">
+      <div class="tab-content">
+
+        <!-- Contact Info -->
+        <div class="contact-info-section">
+          <mat-card class="contact-info-card">
+            <mat-card-content>
+              <div class="contact-methods">
+                <div class="contact-method">
+                  <mat-icon class="contact-icon">phone</mat-icon>
+                  <div class="contact-details">
+                    <h4>Teléfono</h4>
+                    <p>+51 1 234-5678</p>
+                    <span>Lunes a Viernes: 8:00 AM - 8:00 PM</span>
+                  </div>
+                </div>
+
+                <div class="contact-method">
+                  <mat-icon class="contact-icon">email</mat-icon>
+                  <div class="contact-details">
+                    <h4>Email</h4>
+                    <p>soporte.careme.pe</p>
+                    <span>Respuesta en 24 horas</span>
+                  </div>
+                </div>
+
+                <div class="contact-method">
+                  <mat-icon class="contact-icon">chat</mat-icon>
+                  <div class="contact-details">
+                    <h4>Chat en Vivo</h4>
+                    <p>Disponible ahora</p>
+                    <span>Respuesta inmediata</span>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <!-- Support Form -->
+        <div class="form-section">
+          <mat-card class="form-card">
+            <mat-card-header>
+              <mat-card-title>Enviar Mensaje</mat-card-title>
+              <mat-card-subtitle>Completa el formulario y te responderemos lo antes posible</mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content>
+              <form [formGroup]="supportForm" (ngSubmit)="onSubmit()" class="support-form">
+
+                <!-- Name Field -->
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>{{ 'support.name' | translate }}</mat-label>
+                  <input
+                    matInput
+                    formControlName="name"
+                    placeholder="Ingrese su nombre completo">
+                  <mat-icon matSuffix>person</mat-icon>
+                  <mat-error *ngIf="isFieldInvalid('name')">
+                    {{ getFieldError('name') }}
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Email Field -->
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>{{ 'support.email' | translate }}</mat-label>
+                  <input
+                    matInput
+                    type="email"
+                    formControlName="email"
+                    placeholder="Ingrese su email">
+                  <mat-icon matSuffix>email</mat-icon>
+                  <mat-error *ngIf="isFieldInvalid('email')">
+                    {{ getFieldError('email') }}
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Subject Field -->
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>{{ 'support.subject' | translate }}</mat-label>
+                  <mat-select formControlName="subject">
+                    <mat-option *ngFor="let option of subjectOptions" [value]="option">
+                      {{ option }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-icon matSuffix>topic</mat-icon>
+                  <mat-error *ngIf="isFieldInvalid('subject')">
+                    {{ getFieldError('subject') }}
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Message Field -->
+                <mat-form-field appearance="outline" class="form-field message-field">
+                  <mat-label>{{ 'support.message' | translate }}</mat-label>
+                  <textarea
+                    matInput
+                    formControlName="message"
+                    rows="6"
+                    placeholder="Describe tu consulta o problema en detalle">
+                  </textarea>
+                  <mat-icon matSuffix>message</mat-icon>
+                  <mat-error *ngIf="isFieldInvalid('message')">
+                    {{ getFieldError('message') }}
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Submit Button -->
+                <div class="form-actions">
+                  <button
+                    type="submit"
+                    mat-raised-button
+                    color="primary"
+                    [disabled]="supportForm.invalid || submitting"
+                    class="submit-btn">
+
+                    <mat-spinner
+                      *ngIf="submitting"
+                      diameter="20"
+                      class="btn-spinner">
+                    </mat-spinner>
+
+                    <span *ngIf="!submitting">{{ 'support.send' | translate }}</span>
+                    <span *ngIf="submitting">Enviando...</span>
+                  </button>
+                </div>
+              </form>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+      </div>
+    </mat-tab>
+
+    <!-- FAQ Tab -->
+    <mat-tab label="Preguntas Frecuentes">
+      <div class="tab-content">
+
+        <!-- Loading FAQ -->
+        <div *ngIf="loadingFAQ" class="loading-container">
+          <mat-spinner></mat-spinner>
+        </div>
+
+        <!-- FAQ Content -->
+        <div *ngIf="!loadingFAQ" class="faq-section">
+
+          <!-- General Questions -->
+          <div class="faq-category">
+            <h3 class="category-title">Preguntas Generales</h3>
+            <mat-accordion class="faq-accordion">
+              <mat-expansion-panel
+                *ngFor="let faq of getFAQByCategory('general')"
+                class="faq-panel">
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="faq-question">
+                    {{ faq.question }}
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="faq-answer">{{ faq.answer }}</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+
+          <!-- Security Questions -->
+          <div class="faq-category">
+            <h3 class="category-title">Seguridad</h3>
+            <mat-accordion class="faq-accordion">
+              <mat-expansion-panel
+                *ngFor="let faq of getFAQByCategory('seguridad')"
+                class="faq-panel">
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="faq-question">
+                    {{ faq.question }}
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="faq-answer">{{ faq.answer }}</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+
+          <!-- Subscription Questions -->
+          <div class="faq-category">
+            <h3 class="category-title">Suscripciones</h3>
+            <mat-accordion class="faq-accordion">
+              <mat-expansion-panel
+                *ngFor="let faq of getFAQByCategory('suscripcion')"
+                class="faq-panel">
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="faq-question">
+                    {{ faq.question }}
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="faq-answer">{{ faq.answer }}</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+
+          <!-- Payment Questions -->
+          <div class="faq-category">
+            <h3 class="category-title">Pagos</h3>
+            <mat-accordion class="faq-accordion">
+              <mat-expansion-panel
+                *ngFor="let faq of getFAQByCategory('pagos')"
+                class="faq-panel">
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="faq-question">
+                    {{ faq.question }}
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="faq-answer">{{ faq.answer }}</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+
+        </div>
+      </div>
+    </mat-tab>
+
+    <!-- My Tickets Tab -->
+    <mat-tab label="Mis Consultas">
+      <div class="tab-content">
+
+        <!-- Loading Tickets -->
+        <div *ngIf="loadingTickets" class="loading-container">
+          <mat-spinner></mat-spinner>
+        </div>
+
+        <!-- Tickets Content -->
+        <div *ngIf="!loadingTickets" class="tickets-section">
+
+          <!-- Tickets List -->
+          <div *ngIf="userTickets.length > 0" class="tickets-list">
+            <mat-card
+              *ngFor="let ticket of userTickets"
+              class="ticket-card">
+
+              <mat-card-header>
+                <mat-card-title class="ticket-subject">{{ ticket.subject }}</mat-card-title>
+                <mat-card-subtitle class="ticket-date">
+                  {{ ticket.date | date:'longDate' }}
+                </mat-card-subtitle>
+
+                <div class="ticket-status">
+                  <mat-chip [color]="getStatusColor(ticket.status)">
+                    {{ getStatusLabel(ticket.status) }}
+                  </mat-chip>
+                </div>
+              </mat-card-header>
+
+              <mat-card-content>
+                <div class="ticket-content">
+                  <div class="ticket-message">
+                    <h4>Tu mensaje:</h4>
+                    <p>{{ ticket.message }}</p>
+                  </div>
+
+                  <div *ngIf="ticket.response" class="ticket-response">
+                    <h4>Respuesta del equipo:</h4>
+                    <p>{{ ticket.response }}</p>
+                    <span class="response-date">{{ ticket.responseDate | date:'shortDate' }}</span>
+                  </div>
+                </div>
+              </mat-card-content>
+
+              <mat-card-actions *ngIf="ticket.status === 'pending'">
+                <button mat-stroked-button color="primary">
+                  Seguimiento
+                </button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+
+          <!-- Empty State -->
+          <div *ngIf="userTickets.length === 0" class="empty-tickets">
+            <mat-card class="empty-tickets-card">
+              <mat-card-content>
+                <div class="empty-tickets-content">
+                  <mat-icon class="empty-tickets-icon">support_agent</mat-icon>
+                  <h2>No tienes consultas registradas</h2>
+                  <p>Cuando envíes una consulta aparecerá aquí con su estado y respuesta.</p>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+        </div>
+      </div>
+    </mat-tab>
+
+  </mat-tab-group>
+</div>

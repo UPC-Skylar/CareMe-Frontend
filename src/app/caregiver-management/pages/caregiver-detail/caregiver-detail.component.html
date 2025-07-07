@@ -1,0 +1,38 @@
+<!-- src/app/caregiver-management/pages/caregiver-detail/caregiver-detail.component.html -->
+<div class="caregiver-detail-container" *ngIf="!loading && caregiver">
+  <mat-card class="caregiver-detail-card">
+    <mat-card-header>
+      <div mat-card-avatar class="caregiver-avatar">
+        <img [src]="caregiver.profileImage || 'https://via.placeholder.com/150'" [alt]="caregiver.name">
+      </div>
+      <mat-card-title>{{ caregiver.name }}</mat-card-title>
+      <mat-card-subtitle>{{ caregiver.professionalTitle }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="caregiver-info">
+        <p><strong>Especialidad:</strong> {{ caregiver.specialty }}</p>
+        <p><strong>Experiencia:</strong> {{ caregiver.yearsOfExperience }} años</p>
+        <p><strong>Ubicación:</strong> {{ caregiver.location }}</p>
+        <p><strong>Teléfono:</strong> {{ caregiver.phoneNumber }}</p>
+
+        <div *ngIf="caregiver.rating" class="rating-section">
+          <strong>Calificación:</strong>
+          <div class="stars">
+            <mat-icon *ngFor="let star of getRatingStars(caregiver.rating)">{{ star }}</mat-icon>
+          </div>
+          <span>({{ caregiver.rating }})</span>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary">Contactar</button>
+      <button mat-button>Agregar a Favoritos</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<div *ngIf="loading" class="loading-container">
+  <mat-spinner></mat-spinner>
+</div>

@@ -1,0 +1,133 @@
+<div class="favorites-container">
+  <!-- Header -->
+  <div class="favorites-header">
+    <h1 class="page-title">{{ 'favorites.title' | translate }}</h1>
+    <p class="page-subtitle">Tus cuidadores favoritos guardados</p>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <!-- Favorites Content -->
+  <div *ngIf="!loading">
+
+    <!-- Favorites Grid -->
+    <div *ngIf="favoriteCaregivers.length > 0" class="favorites-grid">
+      <mat-card
+        *ngFor="let caregiver of favoriteCaregivers"
+        class="favorite-card">
+
+        <mat-card-header>
+          <div mat-card-avatar class="caregiver-avatar">
+            <img
+              [src]="caregiver.profileImage || 'https://via.placeholder.com/150'"
+              [alt]="caregiver.name"
+              class="avatar-image">
+          </div>
+          <mat-card-title class="caregiver-name">{{ caregiver.name }}</mat-card-title>
+          <mat-card-subtitle class="caregiver-title">{{ caregiver.professionalTitle }}</mat-card-subtitle>
+
+          <!-- Remove from Favorites Button -->
+          <button
+            mat-icon-button
+            (click)="removeFromFavorites(caregiver)"
+            class="remove-favorite-btn"
+            matTooltip="Remover de favoritos">
+            <mat-icon>favorite</mat-icon>
+          </button>
+        </mat-card-header>
+
+        <mat-card-content class="caregiver-content">
+          <!-- Specialty -->
+          <div class="info-item">
+            <mat-icon class="info-icon">medical_services</mat-icon>
+            <span class="info-label">Especialidad:</span>
+            <span class="info-value">{{ caregiver.specialty }}</span>
+          </div>
+
+          <!-- Experience -->
+          <div class="info-item">
+            <mat-icon class="info-icon">work</mat-icon>
+            <span class="info-label">Experiencia:</span>
+            <span class="info-value">{{ caregiver.yearsOfExperience }} años</span>
+          </div>
+
+          <!-- Location -->
+          <div class="info-item">
+            <mat-icon class="info-icon">location_on</mat-icon>
+            <span class="info-label">Ubicación:</span>
+            <span class="info-value">{{ caregiver.location }}</span>
+          </div>
+
+          <!-- Rating -->
+          <div class="info-item" *ngIf="caregiver.rating">
+            <mat-icon class="info-icon">star</mat-icon>
+            <span class="info-label">Calificación:</span>
+            <div class="rating-container">
+              <div class="stars">
+                <mat-icon
+                  *ngFor="let star of getRatingStars(caregiver.rating)"
+                  class="star">{{ star }}</mat-icon>
+              </div>
+              <span class="rating-number">({{ caregiver.rating }})</span>
+            </div>
+          </div>
+
+          <!-- Services Count -->
+          <div class="info-item" *ngIf="caregiver.completedServices">
+            <mat-icon class="info-icon">assignment_turned_in</mat-icon>
+            <span class="info-label">Servicios:</span>
+            <span class="info-value">{{ caregiver.completedServices }} completados</span>
+          </div>
+
+          <!-- Verified Badge -->
+          <div class="verification-badge" *ngIf="caregiver.verified">
+            <mat-icon>verified</mat-icon>
+            <span>Verificado</span>
+          </div>
+        </mat-card-content>
+
+        <mat-card-actions class="caregiver-actions">
+          <button
+            mat-raised-button
+            color="primary"
+            [routerLink]="['/caregivers', caregiver.caregiverId]"
+            class="view-profile-btn">
+            Ver Perfil
+          </button>
+
+          <button
+            mat-stroked-button
+            color="primary"
+            class="contact-btn">
+            Contactar
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="favoriteCaregivers.length === 0" class="empty-state">
+      <mat-card class="empty-state-card">
+        <mat-card-content>
+          <div class="empty-state-content">
+            <mat-icon class="empty-state-icon">favorite_border</mat-icon>
+            <h2>{{ 'favorites.empty' | translate }}</h2>
+            <p>Explora nuestra lista de cuidadores profesionales y marca como favoritos a los que más te gusten.</p>
+
+            <button
+              mat-raised-button
+              color="primary"
+              routerLink="/caregivers"
+              class="browse-btn">
+              {{ 'favorites.browseCaregiver' | translate }}
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+  </div>
+</div>

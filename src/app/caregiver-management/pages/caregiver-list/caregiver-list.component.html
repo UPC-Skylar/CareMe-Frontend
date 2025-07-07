@@ -1,0 +1,185 @@
+<!-- src/app/caregiver-management/pages/caregiver-list/caregiver-list.component.html -->
+<div class="caregivers-container">
+  <!-- Header -->
+  <div class="caregivers-header">
+    <h1 class="page-title">{{ 'caregivers.title' | translate }}</h1>
+  </div>
+
+  <!-- Search and Filters -->
+  <div class="filters-section">
+    <mat-card class="filters-card">
+      <mat-card-content>
+        <!-- Search Bar -->
+        <div class="search-container">
+          <mat-form-field appearance="outline" class="search-field">
+            <mat-label>{{ 'caregivers.searchPlaceholder' | translate }}</mat-label>
+            <input
+              matInput
+              [(ngModel)]="searchTerm"
+              (input)="onSearch()"
+              placeholder="{{ 'caregivers.searchPlaceholder' | translate }}">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <!-- Filters Row -->
+        <div class="filters-row">
+          <mat-form-field appearance="outline" class="filter-field">
+            <mat-label>{{ 'caregivers.specialty' | translate }}</mat-label>
+            <mat-select [(value)]="selectedSpecialty" (selectionChange)="onFilterChange()">
+              <mat-option value="">Todas las especialidades</mat-option>
+              <mat-option *ngFor="let specialty of specialties" [value]="specialty">
+                {{ specialty }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="filter-field">
+            <mat-label>{{ 'caregivers.location' | translate }}</mat-label>
+            <input
+              matInput
+              [(ngModel)]="selectedLocation"
+              (input)="onFilterChange()"
+              placeholder="Ej: Miraflores">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="filter-field">
+            <mat-label>Experiencia mínima</mat-label>
+            <mat-select [(value)]="minExperience" (selectionChange)="onFilterChange()">
+              <mat-option [value]="0">Sin mínimo</mat-option>
+              <mat-option [value]="1">1+ año</mat-option>
+              <mat-option [value]="3">3+ años</mat-option>
+              <mat-option [value]="5">5+ años</mat-option>
+              <mat-option [value]="10">10+ años</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button
+            mat-stroked-button
+            (click)="clearFilters()"
+            class="clear-filters-btn">
+            Limpiar Filtros
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <!-- Caregivers Grid -->
+  <div *ngIf="!loading" class="caregivers-grid">
+    <mat-card
+      *ngFor="let item of filteredCaregivers"
+      class="caregiver-card">
+      <mat-card-header>
+        <div mat-card-avatar class="caregiver-avatar">
+          <img
+            [src]="item.profileImage || 'https://via.placeholder.com/150'"
+            [alt]="item.name"
+            class="avatar-image">
+        </div>
+        <mat-card-title class="caregiver-name">{{ item.name }}</mat-card-title>
+        <mat-card-subtitle class="caregiver-title">{{ item.professionalTitle }}</mat-card-subtitle>
+
+        <!-- Favorite Button -->
+        <button
+          mat-icon-button
+          (click)="toggleFavorite(item)"
+          class="favorite-btn"
+          [class.favorited]="isFavorite(item.caregiverId)">
+          <mat-icon>{{ isFavorite(item.caregiverId) ? 'favorite' : 'favorite_border' }}</mat-icon>
+        </button>
+      </mat-card-header>
+
+      <mat-card-content class="caregiver-content">
+        <!-- Specialty -->
+        <div class="info-item">
+          <mat-icon class="info-icon">medical_services</mat-icon>
+          <span class="info-label">{{ 'caregivers.specialty' | translate }}:</span>
+          <span class="info-value">{{ item.specialty }}</span>
+        </div>
+
+        <!-- Experience -->
+        <div class="info-item">
+          <mat-icon class="info-icon">work</mat-icon>
+          <span class="info-label">{{ 'caregivers.experience' | translate }}:</span>
+          <span class="info-value">{{ item.yearsOfExperience }} {{ 'caregivers.years' | translate }}</span>
+        </div>
+
+        <!-- Location -->
+        <div class="info-item">
+          <mat-icon class="info-icon">location_on</mat-icon>
+          <span class="info-label">{{ 'caregivers.location' | translate }}:</span>
+          <span class="info-value">{{ item.location }}</span>
+        </div>
+
+        <!-- Rating -->
+        <div class="info-item" *ngIf="item.rating">
+          <mat-icon class="info-icon">star</mat-icon>
+          <span class="info-label">Calificación:</span>
+          <div class="rating-container">
+            <div class="stars">
+              <mat-icon
+                *ngFor="let star of getRatingStars(item.rating)"
+                class="star">{{ star }}</mat-icon>
+            </div>
+            <span class="rating-number">({{ item.rating }})</span>
+          </div>
+        </div>
+
+        <!-- Services Count -->
+        <div class="info-item" *ngIf="item.completedServices">
+          <mat-icon class="info-icon">assignment_turned_in</mat-icon>
+          <span class="info-label">Servicios:</span>
+          <span class="info-value">{{ item.completedServices }} completados</span>
+        </div>
+
+        <!-- Verified Badge -->
+        <div class="verification-badge" *ngIf="item.verified">
+          <mat-icon>verified</mat-icon>
+          <span>Verificado</span>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions class="caregiver-actions">
+        <button
+          mat-raised-button
+          color="primary"
+          [routerLink]="['/caregivers', item.caregiverId]"
+          class="view-profile-btn">
+          {{ 'caregivers.viewProfile' | translate }}
+        </button>
+
+        <button
+          mat-stroked-button
+          color="primary"
+          class="contact-btn">
+          {{ 'caregivers.contactCaregiver' | translate }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <!-- No Results -->
+  <div *ngIf="!loading && filteredCaregivers.length === 0" class="no-results">
+    <mat-card class="no-results-card">
+      <mat-card-content>
+        <div class="no-results-content">
+          <mat-icon class="no-results-icon">search_off</mat-icon>
+          <h3>{{ 'common.noResults' | translate }}</h3>
+          <p>Intenta ajustar los filtros de búsqueda</p>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="clearFilters()">
+            Limpiar Filtros
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

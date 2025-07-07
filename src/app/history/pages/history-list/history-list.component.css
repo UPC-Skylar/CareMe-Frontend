@@ -1,0 +1,415 @@
+/* src/app/history/pages/history-list/history-list.component.css */
+.history-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.history-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.page-title {
+  font-family: 'Zilla Slab', serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: #3D44DD;
+  margin-bottom: 10px;
+}
+
+.page-subtitle {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  color: #405057;
+  margin: 0;
+}
+
+/* Stats Section */
+.stats-section {
+  margin-bottom: 30px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+}
+
+.stat-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  font-size: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.stat-icon.contracts {
+  background-color: #3D44DD;
+}
+
+.stat-icon.completed {
+  background-color: #4caf50;
+}
+
+.stat-icon.spent {
+  background-color: #ff9800;
+}
+
+.stat-icon.rating {
+  background-color: #e91e63;
+}
+
+.stat-info h3 {
+  font-family: 'Zilla Slab', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 4px 0;
+}
+
+.stat-info p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #405057;
+  margin: 0;
+}
+
+/* Filters Section */
+.filters-section {
+  margin-bottom: 30px;
+}
+
+.filters-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.filters-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+
+.filter-field {
+  min-width: 150px;
+  flex: 1;
+}
+
+.clear-filters-btn {
+  color: #3D44DD;
+  border-color: #3D44DD;
+  white-space: nowrap;
+}
+
+.clear-filters-btn:hover {
+  background-color: rgba(61, 68, 221, 0.1);
+}
+
+/* Loading */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+/* Desktop Table View */
+.desktop-view {
+  display: block;
+}
+
+.mobile-view {
+  display: none;
+}
+
+.table-container {
+  margin-bottom: 40px;
+}
+
+.table-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.history-table {
+  width: 100%;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.history-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.history-table td {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.caregiver-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.caregiver-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.caregiver-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.amount {
+  font-weight: 600;
+  color: #3D44DD;
+  font-size: 16px;
+}
+
+/* Status Chips */
+.mat-mdc-chip {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+}
+
+.mat-mdc-chip mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+/* Mobile Cards View */
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.history-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.caregiver-avatar-mobile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detail-label {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  color: #405057;
+  font-size: 14px;
+}
+
+.detail-value {
+  font-family: 'Open Sans', sans-serif;
+  color: #333;
+  font-size: 14px;
+  text-align: right;
+}
+
+.status-chip {
+  font-size: 12px;
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.empty-state-card {
+  max-width: 500px;
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.empty-state-content {
+  text-align: center;
+  padding: 60px 40px;
+}
+
+.empty-state-icon {
+  font-size: 80px;
+  width: 80px;
+  height: 80px;
+  color: #ccc;
+  margin-bottom: 24px;
+  opacity: 0.7;
+}
+
+.empty-state-content h2 {
+  font-family: 'Zilla Slab', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.empty-state-content p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  color: #405057;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.empty-state-content button {
+  background-color: #3D44DD;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 8px;
+  padding: 12px 32px;
+}
+
+.empty-state-content button:hover {
+  background-color: #2A33B8;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .desktop-view {
+    display: none;
+  }
+
+  .mobile-view {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .history-container {
+    padding: 0 15px;
+  }
+
+  .page-title {
+    font-size: 24px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .filters-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-field {
+    min-width: unset;
+  }
+
+  .stat-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .stat-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+  }
+
+  .empty-state-content {
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .history-card .mat-mdc-card-header {
+    padding: 16px;
+  }
+
+  .history-card .mat-mdc-card-content {
+    padding: 0 16px;
+  }
+
+  .history-card .mat-mdc-card-actions {
+    padding: 12px 16px 16px;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .history-card .mat-mdc-card-actions button {
+    width: 100%;
+  }
+
+  .detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .detail-value {
+    text-align: left;
+  }
+
+  .empty-state-icon {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+  }
+
+  .empty-state-content h2 {
+    font-size: 20px;
+  }
+}

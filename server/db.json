@@ -1,0 +1,194 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "firstname": "Juan Carlos",
+      "email": "juan.carlos@email.com",
+      "password": "hashedPassword123",
+      "phone": "+51987654321",
+      "role": "client"
+    },
+    {
+      "id": "2",
+      "firstname": "María Elena",
+      "email": "maria.elena@email.com",
+      "password": "hashedPassword456",
+      "phone": "+51912345678",
+      "role": "client"
+    }
+  ],
+  "caregivers": [
+    {
+      "caregiverId": "cg-001",
+      "name": "Ana María González",
+      "age": 35,
+      "specialty": "Geriatría",
+      "yearsOfExperience": 8,
+      "location": "Miraflores, Lima",
+      "phoneNumber": "+51987123456",
+      "professionalTitle": "Licenciada en Enfermería",
+      "rating": 4.8,
+      "completedServices": 156,
+      "profileImage": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face",
+      "verified": true,
+      "user": {
+        "id": "cg-user-001",
+        "email": "ana.gonzalez@careme.pe"
+      }
+    },
+    {
+      "caregiverId": "cg-002",
+      "name": "Carlos Roberto Mendoza",
+      "age": 42,
+      "specialty": "Cuidados Intensivos",
+      "yearsOfExperience": 12,
+      "location": "San Isidro, Lima",
+      "phoneNumber": "+51987654321",
+      "professionalTitle": "Técnico en Enfermería",
+      "rating": 4.9,
+      "completedServices": 203,
+      "profileImage": "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=150&h=150&fit=crop&crop=face",
+      "verified": true,
+      "user": {
+        "id": "cg-user-002",
+        "email": "carlos.mendoza@careme.pe"
+      }
+    },
+    {
+      "caregiverId": "cg-003",
+      "name": "Patricia Flores Vega",
+      "age": 38,
+      "specialty": "Rehabilitación",
+      "yearsOfExperience": 10,
+      "location": "Surco, Lima",
+      "phoneNumber": "+51912345678",
+      "professionalTitle": "Licenciada en Terapia Física",
+      "rating": 4.7,
+      "completedServices": 134,
+      "profileImage": "https://images.unsplash.com/photo-1609902726285-00668009f004?w=150&h=150&fit=crop&crop=face",
+      "verified": true,
+      "user": {
+        "id": "cg-user-003",
+        "email": "patricia.flores@careme.pe"
+      }
+    },
+    {
+      "caregiverId": "cg-004",
+      "name": "Luis Fernando Torres",
+      "age": 29,
+      "specialty": "Cuidados Paliativos",
+      "yearsOfExperience": 5,
+      "location": "Barranco, Lima",
+      "phoneNumber": "+51998765432",
+      "professionalTitle": "Licenciado en Enfermería",
+      "rating": 4.6,
+      "completedServices": 89,
+      "profileImage": "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=150&h=150&fit=crop&crop=face",
+      "verified": true,
+      "user": {
+        "id": "cg-user-004",
+        "email": "luis.torres@careme.pe"
+      }
+    },
+    {
+      "caregiverId": "cg-005",
+      "name": "Rosa Elena Huamán",
+      "age": 45,
+      "specialty": "Pediatría",
+      "yearsOfExperience": 15,
+      "location": "Pueblo Libre, Lima",
+      "phoneNumber": "+51976543210",
+      "professionalTitle": "Licenciada en Enfermería Pediátrica",
+      "rating": 4.9,
+      "completedServices": 278,
+      "profileImage": "https://images.unsplash.com/photo-1527613426441-4da17471b66d?w=150&h=150&fit=crop&crop=face",
+      "verified": true,
+      "user": {
+        "id": "cg-user-005",
+        "email": "rosa.huaman@careme.pe"
+      }
+    }
+  ],
+  "favorites": [
+    {
+      "id": "fav-001",
+      "userId": "1",
+      "caregiverId": "cg-001",
+      "addedDate": "2024-01-15"
+    },
+    {
+      "id": "fav-002",
+      "userId": "1",
+      "caregiverId": "cg-003",
+      "addedDate": "2024-01-20"
+    }
+  ],
+  "subscriptions": [
+    {
+      "id": "sub-001",
+      "userId": "1",
+      "planType": "premium",
+      "price": 20,
+      "currency": "PEN",
+      "startDate": "2024-01-01",
+      "endDate": "2024-02-01",
+      "status": "active"
+    },
+    {
+      "id": "c0da",
+      "userId": "1",
+      "planType": "promax",
+      "price": 35,
+      "currency": "PEN",
+      "startDate": "2025-07-07",
+      "endDate": "2025-08-07",
+      "status": "active"
+    },
+    {
+      "id": "d38d",
+      "userId": "1",
+      "planType": "premium",
+      "price": 20,
+      "currency": "PEN",
+      "startDate": "2025-07-07",
+      "endDate": "2025-08-07",
+      "status": "active"
+    }
+  ],
+  "history": [
+    {
+      "id": "hist-001",
+      "userId": "1",
+      "caregiverId": "cg-001",
+      "date": "2024-01-10",
+      "duration": "4 horas",
+      "status": "completed",
+      "amount": 80,
+      "currency": "PEN",
+      "description": "Cuidado domiciliario - Adulto mayor"
+    },
+    {
+      "id": "hist-002",
+      "userId": "1",
+      "caregiverId": "cg-002",
+      "date": "2024-01-05",
+      "duration": "6 horas",
+      "status": "completed",
+      "amount": 120,
+      "currency": "PEN",
+      "description": "Cuidado intensivo - Post operatorio"
+    }
+  ],
+  "support": [
+    {
+      "id": "support-001",
+      "userId": "1",
+      "name": "Juan Carlos",
+      "email": "juan.carlos@email.com",
+      "subject": "Problema con la aplicación",
+      "message": "No puedo acceder a mi perfil",
+      "date": "2024-01-15",
+      "status": "pending"
+    }
+  ]
+}

@@ -1,0 +1,275 @@
+<!-- src/app/history/pages/history-list/history-list.component.html -->
+<div class="history-container">
+  <!-- Header -->
+  <div class="history-header">
+    <h1 class="page-title">{{ 'history.title' | translate }}</h1>
+    <p class="page-subtitle">Revisa el historial completo de tus contrataciones</p>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="stats-section">
+    <div class="stats-grid">
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <div class="stat-content">
+            <mat-icon class="stat-icon contracts">assignment</mat-icon>
+            <div class="stat-info">
+              <h3>{{ stats.totalContracts }}</h3>
+              <p>Contratos Totales</p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <div class="stat-content">
+            <mat-icon class="stat-icon completed">check_circle</mat-icon>
+            <div class="stat-info">
+              <h3>{{ stats.completedContracts }}</h3>
+              <p>Completados</p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <div class="stat-content">
+            <mat-icon class="stat-icon spent">account_balance_wallet</mat-icon>
+            <div class="stat-info">
+              <h3>S/ {{ stats.totalSpent }}</h3>
+              <p>Total Gastado</p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <div class="stat-content">
+            <mat-icon class="stat-icon rating">star</mat-icon>
+            <div class="stat-info">
+              <h3>{{ stats.averageRating }}</h3>
+              <p>Calificación Promedio</p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- Filters Section -->
+  <div class="filters-section">
+    <mat-card class="filters-card">
+      <mat-card-content>
+        <div class="filters-row">
+          <mat-form-field appearance="outline" class="filter-field">
+            <mat-label>Estado</mat-label>
+            <mat-select [(value)]="selectedStatus" (selectionChange)="applyFilters()">
+              <mat-option *ngFor="let option of statusOptions" [value]="option.value">
+                {{ option.label }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="filter-field">
+            <mat-label>Fecha desde</mat-label>
+            <input
+              matInput
+              [matDatepicker]="fromPicker"
+              [(ngModel)]="dateFrom"
+              (dateChange)="applyFilters()">
+            <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
+            <mat-datepicker #fromPicker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="filter-field">
+            <mat-label>Fecha hasta</mat-label>
+            <input
+              matInput
+              [matDatepicker]="toPicker"
+              [(ngModel)]="dateTo"
+              (dateChange)="applyFilters()">
+            <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
+            <mat-datepicker #toPicker></mat-datepicker>
+          </mat-form-field>
+
+          <button
+            mat-stroked-button
+            (click)="clearFilters()"
+            class="clear-filters-btn">
+            Limpiar Filtros
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <!-- History Content -->
+  <div *ngIf="!loading" class="history-content">
+
+    <!-- History Table (Desktop) -->
+    <div class="table-container desktop-view">
+      <mat-card class="table-card">
+        <table mat-table [dataSource]="filteredHistory" class="history-table">
+
+          <!-- Caregiver Column -->
+          <ng-container matColumnDef="caregiver">
+            <th mat-header-cell *matHeaderCellDef>{{ 'history.caregiver' | translate }}</th>
+            <td mat-cell *matCellDef="let item">
+              <div class="caregiver-cell">
+                <img
+                  [src]="item.caregiverImage"
+                  [alt]="item.caregiverName"
+                  class="caregiver-avatar">
+                <span class="caregiver-name">{{ item.caregiverName }}</span>
+              </div>
+            </td>
+          </ng-container>
+
+          <!-- Date Column -->
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>{{ 'history.date' | translate }}</th>
+            <td mat-cell *matCellDef="let item">{{ item.date | date:'shortDate' }}</td>
+          </ng-container>
+
+          <!-- Duration Column -->
+          <ng-container matColumnDef="duration">
+            <th mat-header-cell *matHeaderCellDef>{{ 'history.duration' | translate }}</th>
+            <td mat-cell *matCellDef="let item">{{ item.duration }}</td>
+          </ng-container>
+
+          <!-- Status Column -->
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>{{ 'history.status' | translate }}</th>
+            <td mat-cell *matCellDef="let item">
+              <mat-chip [color]="getStatusColor(item.status)">
+                <mat-icon>{{ getStatusIcon(item.status) }}</mat-icon>
+                {{ getStatusLabel(item.status) }}
+              </mat-chip>
+            </td>
+          </ng-container>
+
+          <!-- Amount Column -->
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef>{{ 'history.amount' | translate }}</th>
+            <td mat-cell *matCellDef="let item">
+              <span class="amount">S/ {{ item.amount }}</span>
+            </td>
+          </ng-container>
+
+          <!-- Actions Column -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let item">
+              <button
+                mat-icon-button
+                (click)="viewDetails(item)"
+                matTooltip="Ver detalles">
+                <mat-icon>visibility</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                (click)="downloadInvoice(item)"
+                matTooltip="Descargar factura"
+                *ngIf="item.status === 'completed'">
+                <mat-icon>download</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </mat-card>
+    </div>
+
+    <!-- History Cards (Mobile) -->
+    <div class="cards-container mobile-view">
+      <mat-card
+        *ngFor="let item of filteredHistory"
+        class="history-card">
+
+        <mat-card-header>
+          <div mat-card-avatar class="caregiver-avatar-mobile">
+            <img
+              [src]="item.caregiverImage"
+              [alt]="item.caregiverName"
+              class="avatar-image">
+          </div>
+          <mat-card-title>{{ item.caregiverName }}</mat-card-title>
+          <mat-card-subtitle>{{ item.date | date:'shortDate' }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="card-details">
+            <div class="detail-row">
+              <span class="detail-label">Duración:</span>
+              <span class="detail-value">{{ item.duration }}</span>
+            </div>
+
+            <div class="detail-row">
+              <span class="detail-label">Estado:</span>
+              <mat-chip [color]="getStatusColor(item.status)" class="status-chip">
+                <mat-icon>{{ getStatusIcon(item.status) }}</mat-icon>
+                {{ getStatusLabel(item.status) }}
+              </mat-chip>
+            </div>
+
+            <div class="detail-row">
+              <span class="detail-label">Monto:</span>
+              <span class="detail-value amount">S/ {{ item.amount }}</span>
+            </div>
+
+            <div class="detail-row">
+              <span class="detail-label">Descripción:</span>
+              <span class="detail-value">{{ item.description }}</span>
+            </div>
+          </div>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="viewDetails(item)">
+            Ver Detalles
+          </button>
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="downloadInvoice(item)"
+            *ngIf="item.status === 'completed'">
+            Descargar Factura
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="filteredHistory.length === 0" class="empty-state">
+      <mat-card class="empty-state-card">
+        <mat-card-content>
+          <div class="empty-state-content">
+            <mat-icon class="empty-state-icon">history</mat-icon>
+            <h2>{{ 'history.empty' | translate }}</h2>
+            <p>Aún no tienes contratos registrados. Explora nuestros cuidadores y solicita tu primer servicio.</p>
+            <button
+              mat-raised-button
+              color="primary"
+              routerLink="/caregivers">
+              Buscar Cuidadores
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+  </div>
+</div>

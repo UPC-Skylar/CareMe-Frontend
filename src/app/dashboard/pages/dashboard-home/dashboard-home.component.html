@@ -1,0 +1,137 @@
+<!-- src/app/dashboard/pages/dashboard-home/dashboard-home.component.html -->
+<div class="dashboard-container">
+  <!-- Header Section -->
+  <div class="dashboard-header">
+    <h1 class="dashboard-title">{{ 'dashboard.welcome' | translate }}</h1>
+    <p class="dashboard-subtitle">{{ 'dashboard.subtitle' | translate }}</p>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <!-- Dashboard Content -->
+  <div *ngIf="!loading" class="dashboard-content">
+
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <div class="stat-content">
+            <div class="stat-icon">
+              <mat-icon>people</mat-icon>
+            </div>
+            <div class="stat-info">
+              <h3 class="stat-number">{{ stats?.totalCaregivers || 0 }}</h3>
+              <p class="stat-label">{{ 'dashboard.totalCaregivers' | translate }}</p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <div class="stat-content">
+            <div class="stat-icon favorite">
+              <mat-icon>favorite</mat-icon>
+            </div>
+            <div class="stat-info">
+              <h3 class="stat-number">{{ stats?.favoriteCaregivers || 0 }}</h3>
+              <p class="stat-label">{{ 'dashboard.favoriteCaregivers' | translate }}</p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <div class="stat-content">
+            <div class="stat-icon contract">
+              <mat-icon>assignment</mat-icon>
+            </div>
+            <div class="stat-info">
+              <h3 class="stat-number">{{ stats?.activeContracts || 0 }}</h3>
+              <p class="stat-label">{{ 'dashboard.activeContracts' | translate }}</p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <div class="stat-content">
+            <div class="stat-icon amount">
+              <mat-icon>account_balance_wallet</mat-icon>
+            </div>
+            <div class="stat-info">
+              <h3 class="stat-number">S/ {{ stats?.totalSpent || 0 }}</h3>
+              <p class="stat-label">Total Gastado</p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+      <h2 class="section-title">Acciones Rápidas</h2>
+      <div class="actions-grid">
+        <button mat-raised-button color="primary" routerLink="/caregivers" class="action-button">
+          <mat-icon>search</mat-icon>
+          Buscar Cuidadores
+        </button>
+
+        <button mat-raised-button routerLink="/favorites" class="action-button">
+          <mat-icon>favorite</mat-icon>
+          Ver Favoritos
+        </button>
+
+        <button mat-raised-button routerLink="/subscription" class="action-button">
+          <mat-icon>card_membership</mat-icon>
+          Gestionar Suscripción
+        </button>
+
+        <button mat-raised-button routerLink="/support" class="action-button">
+          <mat-icon>support</mat-icon>
+          Contactar Soporte
+        </button>
+      </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="recent-activity">
+      <h2 class="section-title">{{ 'dashboard.recentActivity' | translate }}</h2>
+
+      <mat-card class="activity-card" *ngIf="recentActivities.length > 0; else noActivity">
+        <mat-card-content>
+          <div class="activity-list">
+            <div
+              *ngFor="let activity of recentActivities"
+              class="activity-item">
+              <div class="activity-icon">
+                <mat-icon>{{ getActivityIcon(activity.type) }}</mat-icon>
+              </div>
+              <div class="activity-content">
+                <h4 class="activity-title">{{ activity.title }}</h4>
+                <p class="activity-description">{{ activity.description }}</p>
+                <span class="activity-date">{{ activity.date | date:'shortDate' }}</span>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <ng-template #noActivity>
+        <mat-card class="no-activity-card">
+          <mat-card-content>
+            <div class="no-activity-content">
+              <mat-icon class="no-activity-icon">timeline</mat-icon>
+              <p>No hay actividad reciente</p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </ng-template>
+    </div>
+  </div>
+</div>

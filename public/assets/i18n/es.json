@@ -1,0 +1,100 @@
+{
+  "nav": {
+    "dashboard": "Panel Principal",
+    "caregivers": "Cuidadores",
+    "profile": "Mi Perfil",
+    "history": "Historial",
+    "favorites": "Favoritos",
+    "support": "Soporte",
+    "subscription": "Suscripción",
+    "logout": "Cerrar Sesión"
+  },
+  "dashboard": {
+    "welcome": "Bienvenido a CareMe",
+    "subtitle": "Encuentra los mejores cuidadores profesionales para tus seres queridos",
+    "totalCaregivers": "Total de Cuidadores",
+    "favoriteCaregivers": "Cuidadores Favoritos",
+    "activeContracts": "Contratos Activos",
+    "recentActivity": "Actividad Reciente"
+  },
+  "caregivers": {
+    "title": "Cuidadores Profesionales",
+    "searchPlaceholder": "Buscar cuidadores...",
+    "specialty": "Especialidad",
+    "experience": "Experiencia",
+    "location": "Ubicación",
+    "addToFavorites": "Agregar a Favoritos",
+    "removeFromFavorites": "Quitar de Favoritos",
+    "viewProfile": "Ver Perfil",
+    "contactCaregiver": "Contactar",
+    "years": "años de experiencia"
+  },
+  "profile": {
+    "title": "Mi Perfil",
+    "personalInfo": "Información Personal",
+    "firstName": "Nombre",
+    "email": "Correo Electrónico",
+    "phone": "Teléfono",
+    "role": "Rol",
+    "edit": "Editar",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "updateSuccess": "Perfil actualizado exitosamente"
+  },
+  "subscription": {
+    "title": "Planes de Suscripción",
+    "currentPlan": "Plan Actual",
+    "premium": "Premium",
+    "proMax": "Pro Max",
+    "premiumPrice": "S/ 20/mes",
+    "proMaxPrice": "S/ 35/mes",
+    "premiumFeatures": [
+      "Acceso a cuidadores verificados",
+      "Soporte básico",
+      "Seguimiento de ubicación",
+      "Botón de emergencia básico"
+    ],
+    "proMaxFeatures": [
+      "Acceso a todos los cuidadores premium",
+      "Soporte prioritario 24/7",
+      "Seguimiento avanzado de ubicación",
+      "Botón de emergencia con respuesta instantánea",
+      "Notificaciones familiares",
+      "Reportes detallados"
+    ],
+    "subscribe": "Suscribirse",
+    "manage": "Gestionar Suscripción"
+  },
+  "favorites": {
+    "title": "Cuidadores Favoritos",
+    "empty": "Aún no has agregado cuidadores a favoritos",
+    "browseCaregiver": "Explorar Cuidadores"
+  },
+  "history": {
+    "title": "Historial de Contratos",
+    "date": "Fecha",
+    "caregiver": "Cuidador",
+    "duration": "Duración",
+    "status": "Estado",
+    "amount": "Monto",
+    "empty": "No se encontraron contratos"
+  },
+  "support": {
+    "title": "Contactar Soporte",
+    "name": "Nombre",
+    "email": "Correo Electrónico",
+    "subject": "Asunto",
+    "message": "Mensaje",
+    "send": "Enviar Mensaje",
+    "success": "Mensaje enviado exitosamente"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Ocurrió un error",
+    "retry": "Reintentar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "noResults": "No se encontraron resultados"
+  }
+}

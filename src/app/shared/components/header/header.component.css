@@ -1,0 +1,99 @@
+.header-toolbar {
+  background-color: white;
+  color: #3D44DD;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 64px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo-text {
+  font-family: 'Zilla Slab', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #3D44DD;
+  margin: 0;
+  text-decoration: none;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.language-selector {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  min-width: 100px;
+}
+
+.language-selector .mat-mdc-select-trigger {
+  border: 2px solid #3D44DD;
+  border-radius: 8px;
+  padding: 8px 12px;
+  background-color: transparent;
+}
+
+.language-selector .mat-mdc-select-value {
+  color: #3D44DD;
+  font-weight: 600;
+}
+
+.user-menu-button {
+  color: #3D44DD;
+}
+
+.user-menu-button mat-icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+}
+
+.user-menu {
+  margin-top: 8px;
+}
+
+.user-menu button {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+.user-menu mat-icon {
+  color: #3D44DD;
+  margin-right: 8px;
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    padding: 0 15px;
+  }
+
+  .logo-text {
+    font-size: 24px;
+  }
+
+  .language-selector {
+    min-width: 80px;
+    font-size: 12px;
+  }
+}
